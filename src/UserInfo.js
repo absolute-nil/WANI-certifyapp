@@ -30,7 +30,7 @@ class UserInfo extends Component {
 
     const response = await axios.get(`https://wani.productnation.in/api/v1/token/pass-waniAppToken?cpUrl=${this.state.cpUrl}`)
 
-    this.setState({ response: response.data, status: response.status });
+    this.setState({ response: response.data.paymentUrl, status: response.status });
   }
 
 
