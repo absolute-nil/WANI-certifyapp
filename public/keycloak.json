@@ -1,0 +1,8 @@
+{
+  "realm": "MyDemo",
+  "auth-server-url": "https://206.189.137.35/auth/",
+  "ssl-required": "none",
+  "resource": "my-react-client",
+  "public-client": true,
+  "confidential-port": 0
+}
