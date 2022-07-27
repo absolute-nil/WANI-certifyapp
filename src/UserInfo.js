@@ -10,7 +10,8 @@ class UserInfo extends Component {
       email: "",
       id: "",
       cpUrl: "",
-      response: ""
+      response: "",
+      status: ""
     };
     this.props.keycloak.loadUserInfo().then(userInfo => {
       this.setState({ name: userInfo.name, email: userInfo.email, id: userInfo.sub })
@@ -29,7 +30,7 @@ class UserInfo extends Component {
 
     const response = await axios.get(`https://wani.productnation.in/api/v1/token/pass-waniAppToken?cpUrl=${this.state.cpUrl}`)
 
-    this.setState({ response: response.data });
+    this.setState({ response: response.data, status: response.status });
   }
 
 
@@ -47,6 +48,8 @@ class UserInfo extends Component {
           <input type="submit" value="Submit" />
         </form>
         <p>Response: {this.state.response}</p>
+        <p>Status: {this.state.status}</p>
+        <p>{this.state.status.toString() === "200" ? "Congratulations you are WANI compliant" : this.state.status.toString() === "" ? "" : "Your Captive Portal Url is not wani compliant"}</p>
 
       </div>
     );
