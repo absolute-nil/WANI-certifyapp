@@ -5,20 +5,22 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Welcome from './Welcome';
 import Secured from './Secured';
 import './App.css';
+import { Container } from 'react-bootstrap';
+import Header from './components/header';
+import Landing from './components/landing';
+import UserInfo from './UserInfo';
 
 class App extends Component {
 
   render() {
     return (
       <BrowserRouter>
-        <div className="container">
-          <ul>
-            <li><Link to="/">public component</Link></li>
-            <li><Link to="/secured">secured component</Link></li>
-          </ul>
-          <Route exact path="/" component={Welcome} />
+        <Container>
+          <Header />
+          <br />
+          <Route exact path="/" component={Landing} />
           <Route path="/secured" component={Secured} />
-        </div>
+        </Container>
       </BrowserRouter>
     );
   }
