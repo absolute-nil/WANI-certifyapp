@@ -28,9 +28,22 @@ class UserInfo extends Component {
   async handleSubmit(event) {
     event.preventDefault();
 
-    const response = await axios.get(`https://wani.productnation.in/api/v1/token/pass-waniAppToken?cpUrl=${this.state.cpUrl}`)
+    this.setState({ response: "", status: "" });
 
-    this.setState({ response: response.status === 200 ? response.data.paymentUrl : JSON.stringify(response.data), status: response.status });
+    try {
+      const response = await axios.get(`https://wani.productnation.in/api/v1/token/pass-waniAppToken?cpUrl=${this.state.cpUrl}`, {
+        headers: {
+          Authorization: `Bearer ${this.props.keycloak.token}`
+        },
+      })
+
+      console.log(response)
+      this.setState({ response: response.status === 200 ? response.data.paymentUrl : JSON.stringify(response.data), status: response.status });
+
+    } catch (error) {
+      this.setState({ response: JSON.stringify(error), status: error.status || 400 });
+
+    }
   }
 
 
