@@ -6,11 +6,12 @@ class Logout extends Component {
   logout() {
     this.props.history.push('/');
     this.props.keycloak.logout();
+    this.props.toggleAuthentication(null);
   }
 
   render() {
     return (
-      <button onClick={ () => this.logout() }>
+      <button className="buttonToLink" onClick={() => this.logout()}>
         Logout
       </button>
     );
