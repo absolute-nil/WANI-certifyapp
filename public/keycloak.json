@@ -1,6 +1,6 @@
 {
   "realm": "PM-WANI",
-  "auth-server-url": "https://206.189.137.35/auth/",
+  "auth-server-url": "https://testwani.isprtest.in/auth/",
   "ssl-required": "none",
   "resource": "my-react-client",
   "public-client": true,

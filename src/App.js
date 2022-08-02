@@ -23,8 +23,7 @@ class App extends Component {
   }
 
   toggleAuthentication(keycloak) {
-    this.setState({ loggedIn: !this.state.loggedIn });
-    this.setState({ keycloak });
+    this.setState({ loggedIn: !this.state.loggedIn, keycloak: keycloak });
 
   }
 
