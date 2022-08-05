@@ -33,7 +33,7 @@ class UserInfo extends Component {
     this.setState({ response: "", status: "" });
 
     try {
-      const response = await axios.get(`https://testwani.isprtest.in/api/v1/token/pass-waniAppToken?cpUrl=${this.state.cpUrl}`, {
+      const response = await axios.get(`https://wani.productnation.in/api/v1/token/pass-waniAppToken?cpUrl=${this.state.cpUrl}`, {
         headers: {
           Authorization: `Bearer ${this.props.keycloak.token}`
         },

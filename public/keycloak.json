@@ -1,8 +1,10 @@
 {
   "realm": "PM-WANI",
-  "auth-server-url": "https://testwani.isprtest.in/auth/",
+  "auth-server-url": "https://wani.productnation.in/auth/",
   "ssl-required": "none",
   "resource": "my-react-client",
+  "verify-token-audience": true,
+  "use-resource-role-mappings": true,
   "public-client": true,
   "confidential-port": 0
 }
