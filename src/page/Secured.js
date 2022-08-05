@@ -27,7 +27,7 @@ class Secured extends Component {
       ); else return (<div>Unable to authenticate!</div>)
     }
     return (
-      <div>Initializing Keycloak...</div>
+      <div style={{ textAlign: "center", paddingTop: "50%" }}>Loading...</div>
     );
   }
 }
