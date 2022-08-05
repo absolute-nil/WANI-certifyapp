@@ -34,7 +34,7 @@ class App extends Component {
           <Header loggedIn={this.state.loggedIn} toggleAuthentication={this.toggleAuthentication} keycloak={this.state.keycloak} />
           <br />
           <Route exact path="/" component={Landing} />
-          <Route path="/secured" component={(props) => <Secured {...props} toggleAuthentication={this.toggleAuthentication} />} />
+          <Route path="/secured" render={(props) => <Secured {...props} toggleAuthentication={this.toggleAuthentication} />} />
         </Container>
       </BrowserRouter>
     );
