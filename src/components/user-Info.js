@@ -72,7 +72,7 @@ class UserInfo extends Component {
           <Form onSubmit={this.handleSubmit}>
             <Form.Group className="mb-3" controlId="formCpUrl">
               <Form.Label><h3>Verify PDOA</h3></Form.Label>
-              <Form.Control placeholder="Enter CP Url" value={this.state.value} onChange={this.handleChange} />
+              <Form.Control placeholder="Enter CP Url" value={this.state.value} onChange={this.handleChangeCpUrl} />
               <Form.Text className="text-muted">
                 Enter your Captive portal url to check whether it is WANI compliant
               </Form.Text>
