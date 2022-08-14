@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios"
-import { Form, ListGroup, Button, Card, Accordion } from 'react-bootstrap';
+import { Form, ListGroup, Button, Card, Accordion, Row, Col } from 'react-bootstrap';
 import WaniLinks from './wani-links';
 
 class UserInfo extends Component {
