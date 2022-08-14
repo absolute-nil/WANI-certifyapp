@@ -13,18 +13,30 @@ class UserInfo extends Component {
       id: "",
       cpUrl: "",
       response: "",
-      status: ""
+      status: "",
+      apMacId: "20:74:E2:40:14:B2",
+      deviceMacId: "12:22:33:44:55:BA"
     };
     this.props.keycloak.loadUserInfo().then(userInfo => {
       this.setState({ name: userInfo.name, email: userInfo.email, id: userInfo.sub })
     });
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeCpUrl = this.handleChangeCpUrl.bind(this);
+    this.handleChangeDeviceId = this.handleChangeDeviceId.bind(this);
+    this.handleChangeMacId = this.handleChangeMacId.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChangeCpUrl(event) {
     this.setState({ cpUrl: event.target.value });
+  }
+
+  handleChangeMacId(event) {
+    this.setState({ apMacId: event.target.value });
+  }
+
+  handleChangeDeviceId(event) {
+    this.setState({ deviceMacId: event.target.value });
   }
 
   async handleSubmit(event) {
@@ -33,7 +45,7 @@ class UserInfo extends Component {
     this.setState({ response: "", status: "" });
 
     try {
-      const response = await axios.get(`https://wani.productnation.in/api/v1/token/pass-waniAppToken?cpUrl=${this.state.cpUrl}`, {
+      const response = await axios.get(`https://wani.productnation.in/api/v1/token/pass-waniAppToken?cpUrl=${this.state.cpUrl}&apMacId=${this.state.apMacId}&deviceMacId=${this.state.deviceMacId}`, {
         headers: {
           Authorization: `Bearer ${this.props.keycloak.token}`
         },
@@ -54,18 +66,30 @@ class UserInfo extends Component {
         <ListGroup horizontal>
           <ListGroup.Item><strong>Name:</strong> {this.state.name}</ListGroup.Item>
           <ListGroup.Item><strong>Email:</strong> {this.state.email}</ListGroup.Item>
-          <ListGroup.Item><strong>ID:</strong> {this.state.id}</ListGroup.Item>
         </ListGroup>
         <br />
         <Card body border="light" style={{ boxShadow: "2px 3px 2px 1px #A9ADB7" }}>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicCpUrl">
+            <Form.Group className="mb-3" controlId="formCpUrl">
               <Form.Label><h3>Verify PDOA</h3></Form.Label>
-              <Form.Control type="cpUrl" placeholder="Enter CP Url" value={this.state.value} onChange={this.handleChange} />
+              <Form.Control placeholder="Enter CP Url" value={this.state.value} onChange={this.handleChange} />
               <Form.Text className="text-muted">
                 Enter your Captive portal url to check whether it is WANI compliant
               </Form.Text>
             </Form.Group>
+            <p>Advanced Options:</p>
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formApMacId">
+                <Form.Label>AP Mac Id</Form.Label>
+                <Form.Control placeholder="Enter AP Mac ID" value={this.state.apMacId} onChange={this.handleChangeMacId} />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formDeviceId">
+                <Form.Label>Device Mac ID</Form.Label>
+                <Form.Control placeholder="Device Mac Id" value={this.state.deviceMacId} onChange={this.handleChangeDeviceId} />
+              </Form.Group>
+            </Row>
+
             <Button variant="primary" type="submit">
               Verify
             </Button>
